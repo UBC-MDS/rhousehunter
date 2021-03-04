@@ -1,27 +1,19 @@
 Package: Rhousehunter
 Title: Simplify House-Hunting
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "Ela",
-           family = "Bandari",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
-    person(given = "Junting",
-           family = "He",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
-    person(given = "Elina (Ling)",
-           family = "Lin",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
-    person(given = "Alex",
-           family = "Truong",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+Authors@R: c(person(given = "Ela", 
+                    family = "Bandari",
+                    role = "aut"),
+              person(given = "Junting", 
+                     family = "He",
+                     role = "aut"),
+              person(given = "Elina", 
+                     family = "Lin",
+                     role = c("aut", "cre"),
+                     email = "elina702@hotmail.com"),
+              person(given = "Alex", 
+                     family = "Truong",
+                     role = "aut"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
