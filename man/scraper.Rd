@@ -4,21 +4,19 @@
 \alias{scraper}
 \title{Function to scrape housing data from a given craiglist url}
 \usage{
-scraper(url, online = False, save_csv = False)
+scraper(url, online = False)
 }
 \arguments{
 \item{url}{The given craiglist url to scrape the data from}
 
 \item{online}{Whether the data is scraped directly online from the url (default = False). False means the data is scraped from local HTML file}
-
-\item{save_csv}{Whether to export the data to CSV file (default = False)}
 }
 \value{
-tibble A dataframe containing listing information such as price, house type and neighborhood. A csv containing the dataframe could also be exported with \code{save_csv} option is activated to True.
+tibble A dataframe containing listing information such as price, house type and neighborhood.
 }
 \description{
 Function to scrape housing data from a given craiglist url
 }
 \examples{
-scraper(url = 'https://vancouver.craigslist.org/search/van/apa', save_csv = True)
+scraper(url = 'https://vancouver.craigslist.org/search/van/apa')
 }
