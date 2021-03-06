@@ -1,14 +1,13 @@
 #' Clean web-scraped data.
 #'
-#' A function to clean raw web-scraped data given the path of its CSV file.
+#' A function to clean web-scraped data given the raw data.frame.
 #'
 #'
-#' @param raw_data_filepath The relative path of the raw data CSV file
+#' @param scraped_df A data.frame containing web-scraped data like listing url, price and house type.
 #'
-#' @return data.frame A cleaned data.frame ready for filtering and analysis.
+#' @return data.frame A cleaned dataframe containing ininformation like listing url, price, number of bedroom, area in sqft, and city.
 #' @export
 #' @examples
-#' data_cleaner("raw.csv")
-data_cleaner <- function(raw_data_filepath) {
-
+#' data_cleaner(pd.read_csv('tests/cleaned_toy_data.csv'))
+data_cleaner <- function(scraped_df) {
 }
