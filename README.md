@@ -18,7 +18,7 @@ Hunting for rentals can be an exhausting and frustrating experience in Canada, b
 | scraper | url | tibble | Scrape data from rental websites into a csv file.|
 | data_cleaner | tibble | tibble | Clean the extracted data |
 | data_filter | tibble, min_price, max_price, sqrt_ft, num_bathroom, num_bedroom, neighbourhood | tibble | Filter the cleaned data set based on user inputs|
-| send_email | tibble, email address | csv file | Send the organized listing information to user email |
+| send_email | tibble, email address | None | Send the organized listing information to user email |
 
 
 
