@@ -8,9 +8,15 @@
 #'
 #' @examples
 #' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa")
-scraper <- function(url, online = False) {
+scraper <- function(url, online = FALSE) {
   # PART1: Create node object from URL
-  page <- xml2::read_html(url)
+  if (online == TRUE){
+    download.file(url, destfile = "R/temp/van_housing_listings_new.html", method="curl", extra="-k")
+    page <- xml2::read_html("R/temp/van_housing_listings_new.html")
+  } else{
+    page <- xml2::read_html("R/temp/van_housing_listings.html")
+  }
+
 
   # PART2: Extracted from node object
   nodes <- rvest::html_nodes(page, ".result-info")
@@ -33,8 +39,7 @@ scraper <- function(url, online = False) {
 
 # Check out result
 url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
-local_url <- "R/temp/van_housing_listings.html"
-data <- scraper(local_url)
+data <- scraper(url)
 
 
 
