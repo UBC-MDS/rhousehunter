@@ -1,3 +1,5 @@
+library(testthat)
+library(purrr)
 
 url <-  'https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa'
 
@@ -18,7 +20,7 @@ test_that("ERROR when running scraper(): URL input should be a string", {
 # Test scraper() to raise error when required URL input is not a valid Craiglist housing URL
 test_that("ERROR when running scraper(): URL input needs to be a valid Craiglist housing URL", {
   expect_error(scraper(url = "https://www.haha.com", online = TRUE))
-  expect_error(scraper(url = "https://wiki.ubc.ca/Main_Page", online = TRUE))
+  expect_error(scraper(url = "https://wiki.ubc.ca/Main_Page", online = TRUE)) # not pass
 })
 
 #  Test scraper() to raise error the optional input `online` is not a Boolean
@@ -27,9 +29,10 @@ test_that("ERROR when running scraper(): `online` need to be a Boolean", {
   expect_error(scraper(url = url, online = 'sunny'))
   expect_error(scraper(url = url, online = '25yrs?'))
 })
-s
+
+
 # Tests on output
-data <- scraper(url = url, online = TRUE)
+data <- scraper(url = url, online = FALSE) # TRUE after implement request
 
 # Test to confirm the output tibble is not empty
 test_that("Output tibble is not empty", {
@@ -38,10 +41,21 @@ test_that("Output tibble is not empty", {
 
 # Test to confirm the dimension of the output tibble is correct
 test_that("Output tibble has the correct shape", {
-  expect_true(dim(data) == c(120,5))
+  expect_true(dim(data)[1] == 120)
+  expect_true(dim(data)[2] == 3)
 })
 
-# Test to confirm the data type of each column of the output tibble is string
+# Test to confirm the data type of each column of the output tibble is character type and with correct list name
+test_that("Data type of each column of the output tibble is character type and with correct list name", {
+  data_type <- map(data, class)
+  expected_data_type <- list("character", "character", "character")
+  names(expected_data_type) <- c("listing_url", "price", "house_type")
+  expect_equal(data_type, expected_data_type)
+})
 
-# 4 more tests
-
+# Test to confirm that the scraped data frame contains data in toy dataset
+test_that("the scraped data frame contains data in toy dataset", {
+  toy <- read.csv('tests/toy.csv')
+  toy$price <- stringr::str_trim(toy$price)
+  expect_true(dplyr::all_equal(as.data.frame(dplyr::semi_join(data, toy, by = "listing_url")), toy))
+})

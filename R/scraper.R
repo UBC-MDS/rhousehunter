@@ -3,7 +3,7 @@
 #' @param url The given Craiglist url to scrape the data from.
 #' @param online Whether the data is scraped directly from the url online (default = False). False means the data is scraped from a local HTML file.
 #'
-#' @return tibble A tibble containing listing information such as listing url, price, house type and .
+#' @return tibble A tibble containing listing information such as listing url, price, and house type
 #' @export
 #'
 #' @examples
@@ -37,19 +37,14 @@ scraper <- function(url, online = FALSE) {
 }
 
 
+# TO REMOVE upon final edit
 # Check out result
 url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
-data <- scraper(url)
+data <- scraper(url, online = FALSE)
 
 
-
-
-
-
-
-
-
-
+# Write data to csv
+readr::write_csv(data , file = "raw.csv")
 
 
 
