@@ -32,7 +32,7 @@ test_that("ERROR when running scraper(): `online` need to be a Boolean", {
 
 
 # Tests on output
-data <- scraper(url = url, online = FALSE) # TRUE after implement request
+data <- scraper(url = url, online = TRUE)
 
 # Test to confirm the output tibble is not empty
 test_that("Output tibble is not empty", {
@@ -53,9 +53,11 @@ test_that("Data type of each column of the output tibble is character type and w
   expect_equal(data_type, expected_data_type)
 })
 
+local_data <- scraper(url = url, online = FALSE)
+### for local data only
 # Test to confirm that the scraped data frame contains data in toy dataset
 test_that("the scraped data frame contains data in toy dataset", {
   toy <- read.csv('tests/toy.csv')
   toy$price <- stringr::str_trim(toy$price)
-  expect_true(dplyr::all_equal(as.data.frame(dplyr::semi_join(data, toy, by = "listing_url")), toy))
+  expect_true(dplyr::all_equal(as.data.frame(dplyr::semi_join(local_data, toy, by = "listing_url")), toy))
 })
