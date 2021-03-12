@@ -11,10 +11,11 @@
 scraper <- function(url, online = FALSE) {
   # PART1: Create node object from URL
   if (online == TRUE){
-    download.file(url, destfile = "R/temp/van_housing_listings_new.html", method="curl", extra="-k")
-    page <- xml2::read_html("R/temp/van_housing_listings_new.html")
+    source('R/polite-scrape.R')
+    polite_download_file(url, destfile ='apa' ,overwrite=TRUE)
+    page <- xml2::read_html('downloads/apa')
   } else{
-    page <- xml2::read_html("R/temp/van_housing_listings.html")
+    page <- xml2::read_html("downloads/van_housing_listings.html")
   }
 
 
@@ -27,24 +28,26 @@ scraper <- function(url, online = FALSE) {
   )
 
   for (i in 1:length(nodes)) {
-    listing_url <- rvest::html_attr(rvest::html_node(nodes[i], "a"), "href")
-    price <- rvest::html_text(rvest::html_node(nodes[i], 'span[class="result-price"]'))
-    house_type <- gsub("\r\n", "", gsub(" ", "", rvest::html_text(rvest::html_node(nodes[i], 'span[class="housing"]')), fixed = TRUE), fixed = TRUE)
-    data <- tibble::add_row(data, listing_url = listing_url, price = price, house_type = house_type)
+    listing_url_i <- rvest::html_attr(rvest::html_node(nodes[i], "a"), "href")
+    price_i <- rvest::html_text(rvest::html_node(nodes[i], 'span[class="result-price"]'))
+    house_type_i <- gsub("\n","",gsub("\r\n", "", gsub(" ", "", rvest::html_text(rvest::html_node(nodes[i], 'span[class="housing"]')), fixed = TRUE), fixed = TRUE), fixed = TRUE)
+    data <- tibble::add_row(data, listing_url = listing_url_i, price = price_i, house_type = house_type_i)
   }
 
   data
 }
 
 
-# TO REMOVE upon final edit
+#################TO REMOVE upon final edit
 # Check out result
 url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
 data <- scraper(url, online = FALSE)
 
 
-# Write data to csv
+
+
+# Write data.csv
 readr::write_csv(data , file = "raw.csv")
-
-
+# read toy.csv
+readr::read_csv("tests/toy.csv")
 

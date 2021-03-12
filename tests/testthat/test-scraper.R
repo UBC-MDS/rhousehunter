@@ -6,25 +6,25 @@ url <-  'https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/a
 # Tests on input
 
 # Test scraper() to raise error if URL input is missing
-test_that("ERROR when running scraper(): URL input is missing", {
+test_that("Error in scraper(): URL input is missing", {
   expect_error(scraper(online = TRUE))
   expect_error(scraper())
 })
 
 # Test scraper() to raise error if URL input is not a string
-test_that("ERROR when running scraper(): URL input should be a string", {
+test_that("Error in scraper(): URL input should be a string", {
   expect_error(scraper(url = 123, online = TRUE))
   expect_error(scraper(url = TRUE, online = TRUE))
 })
 
 # Test scraper() to raise error when required URL input is not a valid Craiglist housing URL
-test_that("ERROR when running scraper(): URL input needs to be a valid Craiglist housing URL", {
+test_that("Error in scraper(): URL input needs to be a valid Craiglist housing URL", {
   expect_error(scraper(url = "https://www.haha.com", online = TRUE))
   expect_error(scraper(url = "https://wiki.ubc.ca/Main_Page", online = TRUE)) # not pass
 })
 
 #  Test scraper() to raise error the optional input `online` is not a Boolean
-test_that("ERROR when running scraper(): `online` need to be a Boolean", {
+test_that("Error in scraper(): `online` need to be a Boolean", {
   expect_error(scraper(url = url, online = 1))
   expect_error(scraper(url = url, online = 'sunny'))
   expect_error(scraper(url = url, online = '25yrs?'))
@@ -56,7 +56,7 @@ test_that("Data type of each column of the output tibble is character type and w
 local_data <- scraper(url = url, online = FALSE)
 ### for local data only
 # Test to confirm that the scraped data frame contains data in toy dataset
-test_that("the scraped data frame contains data in toy dataset", {
+test_that("The scraped data frame contains data in toy dataset", {
   toy <- read.csv('tests/toy.csv')
   toy$price <- stringr::str_trim(toy$price)
   expect_true(dplyr::all_equal(as.data.frame(dplyr::semi_join(local_data, toy, by = "listing_url")), toy))
