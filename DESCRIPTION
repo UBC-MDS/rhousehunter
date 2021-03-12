@@ -22,6 +22,13 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 URL: https://github.com/elina-linglin/Rhousehunter
 BugReports: https://github.com/elina-linglin/Rhousehunter/issues
-Suggests: 
-    testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Imports: 
+    polite,
+    rvest,
+    tibble,
+    xml2,
+    testthat,
+    dplyr,
+    stringr,
+    httr

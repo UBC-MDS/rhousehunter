@@ -1,5 +1,4 @@
 library(testthat)
-library(purrr)
 
 url <-  'https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa'
 
@@ -9,6 +8,8 @@ url <-  'https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/a
 test_that("Error in scraper(): URL input is missing", {
   expect_error(scraper(online = TRUE))
   expect_error(scraper())
+  expect_error(scraper(NA, online = TRUE))
+  expect_error(scraper("", online = TRUE))
 })
 
 # Test scraper() to raise error if URL input is not a string
@@ -20,7 +21,7 @@ test_that("Error in scraper(): URL input should be a string", {
 # Test scraper() to raise error when required URL input is not a valid Craiglist housing URL
 test_that("Error in scraper(): URL input needs to be a valid Craiglist housing URL", {
   expect_error(scraper(url = "https://www.haha.com", online = TRUE))
-  expect_error(scraper(url = "https://wiki.ubc.ca/Main_Page", online = TRUE)) # not pass
+  expect_error(scraper(url = "https://wiki.ubc.ca/Main_Page", online = TRUE))
 })
 
 #  Test scraper() to raise error the optional input `online` is not a Boolean
@@ -47,9 +48,10 @@ test_that("Output tibble has the correct shape", {
 
 # Test to confirm the data type of each column of the output tibble is character type and with correct list name
 test_that("Data type of each column of the output tibble is character type and with correct list name", {
-  data_type <- map(data, class)
+  data_type <- lapply(data, class)
   expected_data_type <- list("character", "character", "character")
   names(expected_data_type) <- c("listing_url", "price", "house_type")
+  expect_equal(colnames(data),c("listing_url", "price", "house_type"))
   expect_equal(data_type, expected_data_type)
 })
 
