@@ -59,7 +59,8 @@ local_data <- scraper(url = url, online = FALSE)
 ### for local data only
 # Test to confirm that the scraped data frame contains data in toy dataset
 test_that("The scraped data frame contains data in toy dataset", {
-  toy <- read.csv('tests/toy.csv')
+  print(getwd())
+  toy <- read.csv('toy.csv')
   toy$price <- stringr::str_trim(toy$price)
   expect_true(dplyr::all_equal(as.data.frame(dplyr::semi_join(local_data, toy, by = "listing_url")), toy))
 })

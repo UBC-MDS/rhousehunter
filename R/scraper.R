@@ -1,3 +1,36 @@
+# adopt function of `polite`` for package developers from https://github.com/dmi3kno/polite#polite-for-package-developers
+# I tried to run the following but it cause test() not to pass. In the interest of time, I adopted the relevant function code here
+# to run R package test.
+# source('R/polite-scrape.R')
+# polite::use_manners()
+polite_download_file <- memoise::memoise(
+  function(url, destfile=guess_basename(url), ...,
+           quiet=!verbose, mode = "wb", path="downloads/",
+           user_agent=paste0("polite ", getOption("HTTPUserAgent")),
+           delay = 5, force = FALSE, overwrite=FALSE, verbose=FALSE){
+
+    if(!check_rtxt(url, delay, user_agent, force, verbose)) return(NULL)
+
+    if(!dir.exists(path)) dir.create(path)
+
+    destfile <- paste0(path, destfile)
+
+    if(file.exists(destfile) && !overwrite){
+      message("File ", destfile, " already exists!")
+      return(destfile)
+    }
+
+    old_ua <-  getOption("HTTPUserAgent")
+    options("HTTPUserAgent"= user_agent)
+    if(verbose) message("Scraping: ", url)
+    utils::download.file(url=url, destfile=destfile, quiet=quiet, mode=mode, ...)
+    options("HTTPUserAgent"= old_ua)
+    destfile
+  })
+
+
+
+
 #' Function to scrape housing data from a given craiglist url
 #'
 #' @param url The given Craiglist url to scrape the data from.
@@ -7,7 +40,7 @@
 #' @export
 #'
 #' @examples
-#' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa")
+#' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = TRUE)
 scraper <- function(url, online = FALSE){
   # PART 0: Exception handling/ Input validation
 
@@ -31,21 +64,19 @@ scraper <- function(url, online = FALSE){
     stop("Wrong datatype: Please enter Boolean value: True or False for `online` parameter")
   }
 
-  polite::use_manners()
 
   # PART1: Create node object from URL
   if (online == TRUE){
-    source('R/polite-scrape.R')
     polite_download_file(url, destfile ='apa' ,overwrite=TRUE)
-    page <- xml2::read_html('downloads/apa')
+    page <- xml2::read_html("./downloads/apa")
   } else{
-    page <- xml2::read_html("downloads/van_housing_listings.html")
+    page <- xml2::read_html("./downloads/van_housing_listings.html")
   }
 
 
   # PART2: Extracted from node object
   nodes <- rvest::html_nodes(page, ".result-info")
-  data <- tibble::tibble(
+  data <- dplyr::tibble(
     listing_url = character(),
     price = character(),
     house_type = character()
