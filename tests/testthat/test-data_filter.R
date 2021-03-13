@@ -1,3 +1,5 @@
+cleaned_df <- readr::read_csv('cleaned_toy.csv')
+#tests/testthat/
 # Tests on input
 testthat::test_that("Wrong type of input for price", {
   testthat::expect_error(data_filter(cleaned_df, -100, 2000, 500, 1, 'Vancouver'))

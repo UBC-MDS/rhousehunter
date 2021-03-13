@@ -11,10 +11,8 @@
 #' @return tibble
 #' @export
 #'
-#' @examples data_filter(df, 1000, 2000, 500, 1, 'Vancouver')
-
-# load cleaned df
-cleaned_df <- read_csv('tests/testthat/cleaned_toy.csv')
+#' @examples data_filter(tibble::tibble('listing_url' = c('example.com'), 'price' = c(1000),
+#' 'num_bedroom' = c(1), 'area_sqft' = c(500), 'city' = c('vancouver')), 1000, 2000, 500, 1, 'Vancouver')
 
 data_filter <- function(df,
                         min_price,
@@ -42,7 +40,7 @@ data_filter <- function(df,
 
   # filter function body
   dplyr::filter(df,
-                between(price, min_price, max_price) &
+                dplyr::between(price, min_price, max_price) &
                 (is.na(area_sqft) | area_sqft >= sqrt_ft) &
                 (is.na(num_bedroom) | num_bedroom >= num_bedroom_input) &
                 (is.na(city) | city == tolower(city_input))
