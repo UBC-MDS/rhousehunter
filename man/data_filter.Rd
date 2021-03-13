@@ -4,7 +4,7 @@
 \alias{data_filter}
 \title{Filter a cleaned tibble based on user input}
 \usage{
-data_filter(df, min_price, max_price, sqrt_ft, num_bedroom, city)
+data_filter(df, min_price, max_price, sqrt_ft, num_bedroom_input, city_input)
 }
 \arguments{
 \item{df}{tibble}
@@ -15,13 +15,17 @@ data_filter(df, min_price, max_price, sqrt_ft, num_bedroom, city)
 
 \item{sqrt_ft}{number}
 
-\item{num_bedroom}{int}
+\item{num_bedroom_input}{number}
 
-\item{city}{char}
+\item{city_input}{char}
 }
 \value{
 tibble
 }
 \description{
 Filter a cleaned tibble based on user input
+}
+\examples{
+data_filter(tibble::tibble('listing_url' = c('example.com'), 'price' = c(1000),
+'num_bedroom' = c(1), 'area_sqft' = c(500), 'city' = c('vancouver')), 1000, 2000, 500, 1, 'Vancouver')
 }
