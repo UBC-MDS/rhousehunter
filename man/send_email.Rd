@@ -11,11 +11,11 @@ send_email(
 )
 }
 \arguments{
-\item{email_recipient}{A string containing the email address of the recipient.}
+\item{email_recipient}{A character vector containing the recipient's email.}
 
 \item{filtered_data}{A tibble containing the filtered search results.}
 
-\item{email_subject}{A string containing the desired subject of the email.
+\item{email_subject}{A character vector of desired subject of the email.
 Optional argument with default value of  'Results from RHouseHunter'.}
 }
 \value{
@@ -25,6 +25,5 @@ None.
 A function to email search results.
 }
 \examples{
-send_email("helloworld@gmail.com", df)
-send_email("helloworld@gmail.com", df, "Scraping Results 2")
+send_email("elabandari@gmail.com", (tibble::tibble(name = c("house1"))))
 }
