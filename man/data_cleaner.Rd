@@ -16,5 +16,5 @@ tibble A cleaned tibble containing information like listing url, price, number o
 A function to clean web-scraped data given the tibble containing raw data .
 }
 \examples{
-data_cleaner(pd.read_csv('tests/cleaned_toy_data.csv'))
+data_cleaner(tibble::tibble(“price”= c($1,300", $1,200"), “house_type”= c(“1br-600ft2-“, “2br-“), “listing_url” = c(“https://vancouver.craigslist.org/bnc/apa/d/burnaby-must-see-1br-suite/7282955370.html”, “https://vancouver.craigslist.org/rds/apa/d/surrey-bedroom-basement-for-rent/7273877138.html”)))
 }
