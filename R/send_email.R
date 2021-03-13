@@ -13,6 +13,7 @@
 #' @examples 
 #' send_email("elabandari@gmail.com", (tibble::tibble(name = c("house1"))))
 
+
 send_email <- function(email_recipient, filtered_data,
                        email_subject = 'Results from RHouseHunter') {
   # Pattern for validating email address
