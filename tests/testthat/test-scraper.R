@@ -1,6 +1,6 @@
 library(testthat)
 
-url <-  'https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa'
+url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
 
 # Tests on input
 
@@ -27,8 +27,8 @@ test_that("Error in scraper(): URL input needs to be a valid Craiglist housing U
 #  Test scraper() to raise error the optional input `online` is not a Boolean
 test_that("Error in scraper(): `online` need to be a Boolean", {
   expect_error(scraper(url = url, online = 1))
-  expect_error(scraper(url = url, online = 'sunny'))
-  expect_error(scraper(url = url, online = '25yrs?'))
+  expect_error(scraper(url = url, online = "sunny"))
+  expect_error(scraper(url = url, online = "25yrs?"))
 })
 
 
@@ -51,7 +51,7 @@ test_that("Data type of each column of the output tibble is character type and w
   data_type <- lapply(data, class)
   expected_data_type <- list("character", "character", "character")
   names(expected_data_type) <- c("listing_url", "price", "house_type")
-  expect_equal(colnames(data),c("listing_url", "price", "house_type"))
+  expect_equal(colnames(data), c("listing_url", "price", "house_type"))
   expect_equal(data_type, expected_data_type)
 })
 
@@ -60,7 +60,7 @@ local_data <- scraper(url = url, online = FALSE)
 # Test to confirm that the scraped data frame contains data in toy dataset
 test_that("The scraped data frame contains data in toy dataset", {
   print(getwd())
-  toy <- read.csv('toy.csv')
+  toy <- read.csv("toy.csv")
   toy$price <- stringr::str_trim(toy$price)
   expect_true(dplyr::all_equal(as.data.frame(dplyr::semi_join(local_data, toy, by = "listing_url")), toy))
 })

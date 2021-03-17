@@ -26,6 +26,8 @@ tibble
 Filter a cleaned tibble based on user input
 }
 \examples{
-data_filter(tibble::tibble('listing_url' = c('example.com'), 'price' = c(1000),
-'num_bedroom' = c(1), 'area_sqft' = c(500), 'city' = c('vancouver')), 1000, 2000, 500, 1, 'Vancouver')
+data_filter(tibble::tibble(
+  "listing_url" = c("example.com"), "price" = c(1000),
+  "num_bedroom" = c(1), "area_sqft" = c(500), "city" = c("vancouver")
+), 1000, 2000, 500, 1, "Vancouver")
 }
