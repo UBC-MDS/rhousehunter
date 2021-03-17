@@ -32,6 +32,8 @@ Imports:
     dplyr,
     stringr,
     httr,
-    readr
+    readr,
+    rlang,
+    mailR
 Suggests: 
     covr

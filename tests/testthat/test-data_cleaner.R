@@ -28,7 +28,6 @@ testthat::test_that("Error in data_cleaner(): the input dataframe is missing the
 
 
 # Tests on output
-
 toy_scraped_df <- readr::read_csv('toy.csv')
 output_df <- data_cleaner(toy_scraped_df)
 toy_cleaned_df <- readr::read_csv("cleaned_toy.csv", col_types = readr::cols(price = "i", num_bedroom = "i", area_sqft = "i"))

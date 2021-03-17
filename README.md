@@ -1,6 +1,7 @@
 # R House Hunter 
   <!-- badges: start -->
   [![R-CMD-check](https://github.com/UBC-MDS/rhousehunter/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/rhousehunter/actions)
+  [![codecov](https://codecov.io/gh/UBC-MDS/rhousehunter/branch/main/graph/badge.svg?token=B94PUKUTQP)](https://codecov.io/gh/UBC-MDS/rhousehunter)
   <!-- badges: end -->
  
 
