@@ -33,3 +33,7 @@ Imports:
     stringr,
     httr,
     readr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -2,11 +2,11 @@
 #' Filter a cleaned tibble based on user input
 #'
 #' @param df tibble
-#' @param min_price number
-#' @param max_price number
-#' @param sqrt_ft number
-#' @param num_bedroom_input number
-#' @param city_input char
+#' @param min_price number minimum price
+#' @param max_price number maximum price
+#' @param sqrt_ft number footage of the unit
+#' @param num_bedroom_input number number of bedrooms
+#' @param city_input char the chosen city
 #'
 #' @return tibble
 #' @export
