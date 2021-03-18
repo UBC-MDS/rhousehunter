@@ -1,9 +1,7 @@
-#' null-coalescing operator. See purr for details.
 `%||%` <- function(lhs, rhs) {
   if (!is.null(lhs) && length(lhs) > 0) lhs else rhs
 }
 
-#' function to get robots.txt is structured form. Memoised
 polite_fetch_rtxt <- memoise::memoise(function(..., user_agent, delay, verbose) {
   rt <- robotstxt::robotstxt(...)
   delay_df <- rt$crawl_delay
@@ -36,7 +34,6 @@ check_rtxt <- function(url, delay, user_agent, force, verbose) {
   is_scrapable
 }
 
-#' function that actually fetches response from the web
 polite_read_html <- memoise::memoise(
   function(url, ...,
            delay = 5,
