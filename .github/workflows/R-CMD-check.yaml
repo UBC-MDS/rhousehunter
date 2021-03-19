@@ -60,8 +60,6 @@ jobs:
           while read -r cmd
           do
             eval sudo $cmd
-          sudo apt-get install openjdk-8-jdk
-          sudo R CMD javareconf
           done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
 
       - name: Install dependencies
