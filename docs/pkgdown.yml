@@ -1,0 +1,7 @@
+pandoc: 2.9.2.1
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  rhousehunter-vignette: rhousehunter-vignette.html
+last_built: 2021-03-19T19:30Z
+

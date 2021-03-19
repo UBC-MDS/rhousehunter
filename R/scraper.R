@@ -36,13 +36,15 @@ polite_download_file <- memoise::memoise(
 #' Function to scrape housing data from a given craiglist url
 #'
 #' @param url The given Craiglist url to scrape the data from.
-#' @param online Whether the data is scraped directly from the url online (default = False). False means the data is scraped from a local HTML file.
+#' @param online Whether the data is scraped directly from the url online (default = False).
+#' False means the data is scraped from a local HTML file.
 #'
 #' @return tibble A tibble containing listing information such as listing url, price, and house type
 #' @export
 #'
 #' @examples
-#' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = FALSE)
+#' url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
+#' scraper(url = url, online = FALSE)
 scraper <- function(url, online = FALSE) {
   # PART 0: Exception handling/ Input validation
 

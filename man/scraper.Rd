@@ -9,7 +9,8 @@ scraper(url, online = FALSE)
 \arguments{
 \item{url}{The given Craiglist url to scrape the data from.}
 
-\item{online}{Whether the data is scraped directly from the url online (default = False). False means the data is scraped from a local HTML file.}
+\item{online}{Whether the data is scraped directly from the url online (default = False).
+False means the data is scraped from a local HTML file.}
 }
 \value{
 tibble A tibble containing listing information such as listing url, price, and house type
@@ -18,5 +19,6 @@ tibble A tibble containing listing information such as listing url, price, and h
 Function to scrape housing data from a given craiglist url
 }
 \examples{
-scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = FALSE)
+url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
+scraper(url = url, online = FALSE)
 }

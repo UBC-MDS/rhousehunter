@@ -9,15 +9,15 @@ data_filter(df, min_price, max_price, sqrt_ft, num_bedroom_input, city_input)
 \arguments{
 \item{df}{tibble}
 
-\item{min_price}{number}
+\item{min_price}{number minimum price}
 
-\item{max_price}{number}
+\item{max_price}{number maximum price}
 
-\item{sqrt_ft}{number}
+\item{sqrt_ft}{number footage of the unit}
 
-\item{num_bedroom_input}{number}
+\item{num_bedroom_input}{number number of bedrooms}
 
-\item{city_input}{char}
+\item{city_input}{char the chosen city}
 }
 \value{
 tibble

@@ -34,23 +34,46 @@ To the best of our knowledge, there is currently no existing R package that simp
 
 ## Installation
 
-- TODO
+Please install package `devtools` before installing `rhousehunter` as follows
+
+```r
+install.packages("devtools")
+devtools::install_github("UBC-MDS/Rhousehunter")
+```
 
 ## Features
 
-- TODO
+The pyhousehunter package contains the following four functions:
+- `scraper()`
+The scraper function will scrape all listings available on a given craigslist housing url (e.g. https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa).
+- `data_cleaner()` 
+The data_cleaner function will transform raw data from scraper() to a cleaned tibble object containing the scraped information.
+- `data_filter()`
+The data_filter function will filter the cleaned tibble based on the user's specifications. Users can specify their price range, minimum size, number of bedrooms, bathrooms, and desired municipality.
+- `send_email()`
+The send_email function sends end-users housing listing records meeting their specifications in a .csv format. The user must specify a valid email address and has the option to change the email subject.
 
 ## Dependencies
 
-- TODO
+- polite
+- rvest
+- tibble
+- xml2
+- testthat
+- dplyr
+- stringr
+- httr
+- readr
+- rlang
+- emayili
 
 ## Usage
 
-- TODO
+Please refer to [the package vignette](https://github.com/UBC-MDS/Rhousehunter) for more details
 
 ## Documentation
 
-- TODO
+The official documentation is hosted [here](https://github.com/UBC-MDS/Rhousehunter)
 
 ## Contributors
 
@@ -58,4 +81,7 @@ We welcome and recognize all contributions. You can see how to contribute [here]
 
 ### Credits
 
-This package was created with reference from `devtools` package and [R package guide](https://r-pkgs.org/index.html) by [Hadley Wickham](http://hadley.nz/) and [Jenny Bryan](https://jennybryan.org/)
+This package was created with reference from `devtools` package, [R package guide](https://r-pkgs.org/index.html) by [Hadley Wickham](http://hadley.nz/) and [Jenny Bryan](https://jennybryan.org/) and [`polite` package](https://github.com/dmi3kno/polite) by [
+Dmytro Perepolkin](https://github.com/dmi3kno)
+
+
