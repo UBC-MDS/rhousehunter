@@ -34,7 +34,8 @@ Imports:
     httr,
     readr,
     rlang,
-    mailR
+    mailR,
+    rJava
 Suggests: 
     covr
 Depends: 
