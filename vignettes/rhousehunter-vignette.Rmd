@@ -24,7 +24,7 @@ This document will show you how to use the functions of `rhousehunter` package t
 
 
 #### Scraping
-The first function in our package is the `scraper()`. Here you will input a Craigslist housing url for the main housing and apartment rentals page of Craigslist BC and designate the argument `online = True` to scrape directly from the internet. When `online = False` the scraper function will scrape from a local HTML file, this may be handy if the Craigslist website is down or for internal development and test. Please note that you cannot input the url for an individual listing.  
+The first function in our package is the `scraper()`. Here you will input a Craigslist housing url for the main housing and apartment rentals page of Craigslist BC and designate the argument `online = TRUE` to scrape directly from the internet. When `online = FALSE` the scraper function will scrape from a local HTML file, this may be handy if the Craigslist website is down or for internal development and test. Please note that you cannot input the url for an individual listing.  
 
 ```{r Scraper function}
 url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"

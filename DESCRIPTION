@@ -34,10 +34,11 @@ Imports:
     httr,
     readr,
     rlang,
-    emayili
+    emayili, 
 Suggests: 
     covr,
-    knitr
+    knitr, 
+    rmarkdown
 Depends: 
     R (>= 2.10)
 VignetteBuilder: knitr    
