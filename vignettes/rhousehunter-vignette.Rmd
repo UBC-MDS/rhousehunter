@@ -3,8 +3,9 @@ title: "Rhousehunter Vignette"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{rhousehunter-vignette}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
+  %\usepackage[UTF-8]{inputenc}
 ---
 
 ```{r, include = FALSE}
