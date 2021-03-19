@@ -1,4 +1,4 @@
-Package: Rhousehunter
+Package: rhousehunter
 Title: Simplify House-Hunting
 Version: 0.0.0.9000
 Authors@R: c(person(given = "Ela", 
@@ -21,7 +21,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 URL: https://github.com/UBC-MDS/rhousehunter
-BugReports: https://github.com/UBC-MDS/Rhousehunter/issues
+BugReports: https://github.com/UBC-MDS/rhousehunter/issues
 Config/testthat/edition: 3
 Imports: 
     polite,
@@ -32,8 +32,10 @@ Imports:
     dplyr,
     stringr,
     httr,
-    readr
+    readr,
+    rlang,
+    emayili
 Suggests: 
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr
+    covr
+Depends: 
+    R (>= 2.10)

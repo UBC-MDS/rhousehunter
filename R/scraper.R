@@ -4,29 +4,31 @@
 # source('R/polite-scrape.R')
 # polite::use_manners()
 polite_download_file <- memoise::memoise(
-  function(url, destfile=guess_basename(url), ...,
-           quiet=!verbose, mode = "wb", path="downloads/",
-           user_agent=paste0("polite ", getOption("HTTPUserAgent")),
-           delay = 5, force = FALSE, overwrite=FALSE, verbose=FALSE){
+  function(url, destfile = guess_basename(url), ...,
+           quiet = !verbose, mode = "wb", path = "downloads/",
+           user_agent = paste0("polite ", getOption("HTTPUserAgent")),
+           delay = 5, force = FALSE, overwrite = FALSE, verbose = FALSE) {
+    if (!check_rtxt(url, delay, user_agent, force, verbose)) {
+      return(NULL)
+    }
 
-    if(!check_rtxt(url, delay, user_agent, force, verbose)) return(NULL)
-
-    if(!dir.exists(path)) dir.create(path)
+    if (!dir.exists(path)) dir.create(path)
 
     destfile <- paste0(path, destfile)
 
-    if(file.exists(destfile) && !overwrite){
+    if (file.exists(destfile) && !overwrite) {
       message("File ", destfile, " already exists!")
       return(destfile)
     }
 
-    old_ua <-  getOption("HTTPUserAgent")
-    options("HTTPUserAgent"= user_agent)
-    if(verbose) message("Scraping: ", url)
-    utils::download.file(url=url, destfile=destfile, quiet=quiet, mode=mode, ...)
-    options("HTTPUserAgent"= old_ua)
+    old_ua <- getOption("HTTPUserAgent")
+    options("HTTPUserAgent" = user_agent)
+    if (verbose) message("Scraping: ", url)
+    utils::download.file(url = url, destfile = destfile, quiet = quiet, mode = mode, ...)
+    options("HTTPUserAgent" = old_ua)
     destfile
-  })
+  }
+)
 
 
 
@@ -41,37 +43,37 @@ polite_download_file <- memoise::memoise(
 #' @export
 #'
 #' @examples
-#' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = TRUE)
-scraper <- function(url, online = FALSE){
+#' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = FALSE)
+scraper <- function(url, online = FALSE) {
   # PART 0: Exception handling/ Input validation
 
   ## the right Craiglist URL
-  if(is.na(url) || url == ""){
+  if (is.na(url) || url == "") {
     stop("Missing URL. A Craiglist Housing URL input is required.")
   }
 
-  if(!is.character(url)){
+  if (!is.character(url)) {
     stop("Wrong datatype: Please enter a correct Craiglist Housing URL.")
   }
 
-  regex <- '(http|https):\\/\\/vancouver.craigslist.org\\/d\\/apartments-housing-for-rent\\/search\\/apa.*'
-  if(length(grep(regex, url)) == 0){
+  regex <- "(http|https):\\/\\/vancouver.craigslist.org\\/d\\/apartments-housing-for-rent\\/search\\/apa.*"
+  if (length(grep(regex, url)) == 0) {
     stop("Invalid URL. Please enter a Craiglist Housing URL with this format https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa")
   }
 
 
   ## the right option for online
-  if(!is.logical(online)){
+  if (!is.logical(online)) {
     stop("Wrong datatype: Please enter Boolean value: True or False for `online` parameter")
   }
 
 
   # PART1: Create node object from URL
-  if (online == TRUE){
-    polite_download_file(url, destfile ='apa' ,overwrite=TRUE)
+  if (online == TRUE) {
+    polite_download_file(url, destfile = "apa", overwrite = TRUE)
     page <- xml2::read_html("./downloads/apa")
-  } else{
-    page <- xml2::read_html("./downloads/van_housing_listings.html")
+  } else {
+    page <- xml2::read_html(system.file("extdata", "van_housing_listings.html", package = "rhousehunter"))
   }
 
 
@@ -86,7 +88,7 @@ scraper <- function(url, online = FALSE){
   for (i in 1:length(nodes)) {
     listing_url_i <- rvest::html_attr(rvest::html_node(nodes[i], "a"), "href")
     price_i <- rvest::html_text(rvest::html_node(nodes[i], 'span[class="result-price"]'))
-    house_type_i <- gsub("\n","",gsub("\r\n", "", gsub(" ", "", rvest::html_text(rvest::html_node(nodes[i], 'span[class="housing"]')), fixed = TRUE), fixed = TRUE), fixed = TRUE)
+    house_type_i <- gsub("\n", "", gsub("\r\n", "", gsub(" ", "", rvest::html_text(rvest::html_node(nodes[i], 'span[class="housing"]')), fixed = TRUE), fixed = TRUE), fixed = TRUE)
     data <- tibble::add_row(data, listing_url = listing_url_i, price = price_i, house_type = house_type_i)
   }
   data

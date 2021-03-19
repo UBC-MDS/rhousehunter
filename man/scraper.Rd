@@ -19,5 +19,5 @@ tibble A tibble containing listing information such as listing url, price, and h
 Function to scrape housing data from a given craiglist url
 }
 \examples{
-scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = TRUE)
+scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = FALSE)
 }
