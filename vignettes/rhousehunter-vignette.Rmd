@@ -30,7 +30,7 @@ The first function in our package is the `scraper()`. Here you will input a Crai
 ```{r Scraper function}
 url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
 
-scraped_data <- scraper(url, online = TRUE)
+scraped_data <- scraper(url, online = FALSE)
 head(scraped_data)
 
 ```
