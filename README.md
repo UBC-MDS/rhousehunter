@@ -34,14 +34,12 @@ To the best of our knowledge, there is currently no existing R package that simp
 
 ## Installation
 
-Please install package `devtools` and *rJava* before installing `rhousehunter`
+Please install package `devtools` before installing `rhousehunter` as follows
 
 ```r
 install.packages("devtools")
 devtools::install_github("UBC-MDS/Rhousehunter")
 ```
-
-*To get rJava, please need to install java (jdk8) from https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html*
 
 ## Features
 
@@ -64,11 +62,10 @@ The send_email function sends end-users housing listing records meeting their sp
 - testthat
 - dplyr
 - stringr
-- httr,
+- httr
 - readr
-- knitr
-- rJava
-
+- rlang
+- emayili
 
 ## Usage
 
