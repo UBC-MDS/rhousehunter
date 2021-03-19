@@ -1,10 +1,10 @@
-library(readr)
+# Read in data for tests
 col_spec <- readr::cols(
-  listing_url = col_character(),
-  price = col_double(),
-  num_bedroom = col_double(),
-  area_sqft = col_double(),
-  city = col_character()
+  listing_url = readr::col_character(),
+  price = readr::col_double(),
+  num_bedroom = readr::col_double(),
+  area_sqft = readr::col_double(),
+  city = readr::col_character()
 )
 cleaned_df <- readr::read_csv("cleaned_toy.csv", col_types = col_spec)
 # tests/testthat/
