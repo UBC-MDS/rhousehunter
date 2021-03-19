@@ -6,7 +6,7 @@ col_spec <- readr::cols(
   area_sqft = readr::col_double(),
   city = readr::col_character()
 )
-cleaned_df <- readr::read_csv("cleaned_toy.csv", col_types = col_spec)
+cleaned_df <- readr::read_csv(system.file("extdata", "cleaned_toy.csv", package = "rhousehunter"), col_types = col_spec)
 # tests/testthat/
 # Tests on input
 testthat::test_that("Wrong type of input for price", {

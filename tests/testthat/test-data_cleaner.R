@@ -28,9 +28,9 @@ testthat::test_that("Error in data_cleaner(): the input dataframe is missing the
 
 
 # Tests on output
-toy_scraped_df <- readr::read_csv("toy.csv")
+toy_scraped_df <- readr::read_csv(system.file("extdata", "toy.csv", package = "rhousehunter"))
 output_df <- data_cleaner(toy_scraped_df)
-toy_cleaned_df <- readr::read_csv("cleaned_toy.csv", col_types = readr::cols(price = "i", num_bedroom = "i", area_sqft = "i"))
+toy_cleaned_df <- readr::read_csv(system.file("extdata", "cleaned_toy.csv", package = "rhousehunter"), col_types = readr::cols(price = "i", num_bedroom = "i", area_sqft = "i"))
 
 ## Test to confirm the output tibble is not empty
 testthat::test_that("The cleaned tibble should not be empty", {
