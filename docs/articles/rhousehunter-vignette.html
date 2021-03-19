@@ -101,17 +101,17 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"</span>
 
-<span class="va">scraped_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scraper.html">scraper</a></span><span class="op">(</span><span class="va">url</span>, online <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">scraped_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scraper.html">scraper</a></span><span class="op">(</span><span class="va">url</span>, online <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">scraped_data</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 3</span>
 <span class="co">#&gt;   listing_url                                                  price  house_type</span>
 <span class="co">#&gt;   &lt;chr&gt;                                                        &lt;chr&gt;  &lt;chr&gt;     </span>
-<span class="co">#&gt; 1 https://vancouver.craigslist.org/van/apa/d/vancouver-one-be~ $1,550 1br-600ft~</span>
-<span class="co">#&gt; 2 https://vancouver.craigslist.org/van/apa/d/vancouver-2br-2-~ $2,000 2br-900ft~</span>
-<span class="co">#&gt; 3 https://vancouver.craigslist.org/van/apa/d/vancouver-luxuri~ $2,250 2br-800ft~</span>
-<span class="co">#&gt; 4 https://vancouver.craigslist.org/van/apa/d/vancouver-one-be~ $1,550 1br-600ft~</span>
-<span class="co">#&gt; 5 https://vancouver.craigslist.org/bnc/apa/d/burnaby-like-new~ $2,500 2br-950ft~</span>
-<span class="co">#&gt; 6 https://vancouver.craigslist.org/bnc/apa/d/burnaby-high-ris~ $2,600 2br-950ft~</span></code></pre></div>
+<span class="co">#&gt; 1 https://vancouver.craigslist.org/bnc/apa/d/burnaby-must-see~ $1,250 1br-600ft~</span>
+<span class="co">#&gt; 2 https://vancouver.craigslist.org/rds/apa/d/surrey-bedroom-b~ $1,300 2br-      </span>
+<span class="co">#&gt; 3 https://vancouver.craigslist.org/van/apa/d/vancouver-furnis~ $1,850 1br-500ft~</span>
+<span class="co">#&gt; 4 https://vancouver.craigslist.org/van/apa/d/vancouver-yaleto~ $3,695 2br-900ft~</span>
+<span class="co">#&gt; 5 https://vancouver.craigslist.org/van/apa/d/vancouver-bed-ba~ $2,390 2br-748ft~</span>
+<span class="co">#&gt; 6 https://vancouver.craigslist.org/van/apa/d/cozy-bedroom-apa~ $1,675 1br-500ft~</span></code></pre></div>
 </div>
 <div id="cleaning" class="section level4">
 <h4 class="hasAnchor">
@@ -123,12 +123,12 @@
 <span class="co">#&gt; # A tibble: 6 x 5</span>
 <span class="co">#&gt;   listing_url                                 price num_bedroom area_sqft city  </span>
 <span class="co">#&gt;   &lt;chr&gt;                                       &lt;int&gt;       &lt;int&gt;     &lt;int&gt; &lt;chr&gt; </span>
-<span class="co">#&gt; 1 https://vancouver.craigslist.org/van/apa/d~  1550           1       600 vanco~</span>
-<span class="co">#&gt; 2 https://vancouver.craigslist.org/van/apa/d~  2000           2       900 vanco~</span>
-<span class="co">#&gt; 3 https://vancouver.craigslist.org/van/apa/d~  2250           2       800 vanco~</span>
-<span class="co">#&gt; 4 https://vancouver.craigslist.org/van/apa/d~  1550           1       600 vanco~</span>
-<span class="co">#&gt; 5 https://vancouver.craigslist.org/bnc/apa/d~  2500           2       950 burna~</span>
-<span class="co">#&gt; 6 https://vancouver.craigslist.org/bnc/apa/d~  2600           2       950 burna~</span></code></pre></div>
+<span class="co">#&gt; 1 https://vancouver.craigslist.org/bnc/apa/d~  1250           1       600 burna~</span>
+<span class="co">#&gt; 2 https://vancouver.craigslist.org/rds/apa/d~  1300           2        NA surrey</span>
+<span class="co">#&gt; 3 https://vancouver.craigslist.org/van/apa/d~  1850           1       500 vanco~</span>
+<span class="co">#&gt; 4 https://vancouver.craigslist.org/van/apa/d~  3695           2       900 vanco~</span>
+<span class="co">#&gt; 5 https://vancouver.craigslist.org/van/apa/d~  2390           2       748 vanco~</span>
+<span class="co">#&gt; 6 https://vancouver.craigslist.org/van/apa/d~  1675           1       500 &lt;NA&gt;</span></code></pre></div>
 </div>
 <div id="filtering" class="section level4">
 <h4 class="hasAnchor">
@@ -142,20 +142,20 @@
                              num_bedroom_input <span class="op">=</span> <span class="fl">1</span>, 
                              city_input <span class="op">=</span> <span class="st">'Vancouver'</span><span class="op">)</span>
 <span class="va">filtered_data</span>
-<span class="co">#&gt; # A tibble: 35 x 5</span>
+<span class="co">#&gt; # A tibble: 44 x 5</span>
 <span class="co">#&gt;    listing_url                                price num_bedroom area_sqft city  </span>
 <span class="co">#&gt;    &lt;chr&gt;                                      &lt;int&gt;       &lt;int&gt;     &lt;int&gt; &lt;chr&gt; </span>
-<span class="co">#&gt;  1 https://vancouver.craigslist.org/van/apa/~  1550           1       600 vanco~</span>
-<span class="co">#&gt;  2 https://vancouver.craigslist.org/van/apa/~  2000           2       900 vanco~</span>
-<span class="co">#&gt;  3 https://vancouver.craigslist.org/van/apa/~  1550           1       600 vanco~</span>
-<span class="co">#&gt;  4 https://vancouver.craigslist.org/van/apa/~  1550           1       600 vanco~</span>
-<span class="co">#&gt;  5 https://vancouver.craigslist.org/pml/apa/~  1800           3       930 &lt;NA&gt;  </span>
-<span class="co">#&gt;  6 https://vancouver.craigslist.org/bnc/apa/~  1100          NA        NA &lt;NA&gt;  </span>
-<span class="co">#&gt;  7 https://vancouver.craigslist.org/van/apa/~  1500           2       700 vanco~</span>
-<span class="co">#&gt;  8 https://vancouver.craigslist.org/van/apa/~  2000           1       567 vanco~</span>
-<span class="co">#&gt;  9 https://vancouver.craigslist.org/van/apa/~  2000           3      1000 vanco~</span>
-<span class="co">#&gt; 10 https://vancouver.craigslist.org/van/apa/~  1975           1       580 vanco~</span>
-<span class="co">#&gt; # ... with 25 more rows</span></code></pre></div>
+<span class="co">#&gt;  1 https://vancouver.craigslist.org/van/apa/~  1850           1       500 vanco~</span>
+<span class="co">#&gt;  2 https://vancouver.craigslist.org/van/apa/~  1675           1       500 &lt;NA&gt;  </span>
+<span class="co">#&gt;  3 https://vancouver.craigslist.org/van/apa/~  1700           3        NA vanco~</span>
+<span class="co">#&gt;  4 https://vancouver.craigslist.org/van/apa/~  1575           1       500 &lt;NA&gt;  </span>
+<span class="co">#&gt;  5 https://vancouver.craigslist.org/van/apa/~  1550           1       500 &lt;NA&gt;  </span>
+<span class="co">#&gt;  6 https://vancouver.craigslist.org/van/apa/~  2000           2       850 vanco~</span>
+<span class="co">#&gt;  7 https://vancouver.craigslist.org/bnc/apa/~  1450           1       900 &lt;NA&gt;  </span>
+<span class="co">#&gt;  8 https://vancouver.craigslist.org/rds/apa/~  1500           2        NA &lt;NA&gt;  </span>
+<span class="co">#&gt;  9 https://vancouver.craigslist.org/van/apa/~  1650           1        NA vanco~</span>
+<span class="co">#&gt; 10 https://vancouver.craigslist.org/nvn/apa/~  1750           1       505 vanco~</span>
+<span class="co">#&gt; # ... with 34 more rows</span></code></pre></div>
 </div>
 <div id="emailing" class="section level4">
 <h4 class="hasAnchor">
