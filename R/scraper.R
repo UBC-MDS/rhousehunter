@@ -43,7 +43,8 @@ polite_download_file <- memoise::memoise(
 #' @export
 #'
 #' @examples
-#' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = FALSE)
+#' url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
+#' scraper(url = url, online = FALSE)
 scraper <- function(url, online = FALSE) {
   # PART 0: Exception handling/ Input validation
 
