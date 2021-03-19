@@ -14,8 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, message=FALSE}
-library(tidyverse)
+```{r setup}
 library(rhousehunter)
 ```
 
@@ -31,7 +30,7 @@ The first function in our package is the `scraper()`. Here you will input a Crai
 url <- "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa"
 
 scraped_data <- scraper(url, online = TRUE)
-scraped_data %>%  head()
+head(scraped_data)
 
 ```
 
@@ -41,7 +40,7 @@ Our `data_cleaner()` function is straightforward and powerful tool. It turns the
 
 ```{r Cleaner function}
 cleaned_data <- data_cleaner(scraped_data)
-cleaned_data %>%  head()
+head(cleaned_data)
 ```
 
 
