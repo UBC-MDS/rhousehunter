@@ -38,5 +38,5 @@ testthat::test_that("Error in send_email(): the input tibble is empty", {
 # Tests on output
 # Test that email is sent (i.e. status = 250)
 testthat::test_that("Error in send_email(): Email not Sent", {
-  testthat::expect_true(send_email("hi@new.com", toy_tibble)$status_code == 250)
+  testthat::expect_true(send_email("helloworld@gmail.com", toy_tibble)$status_code == 250)
 })
