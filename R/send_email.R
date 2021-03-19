@@ -37,20 +37,21 @@ send_email <- function(email_recipient, filtered_data,
   file_path <- tempfile()
   readr::write_csv(filtered_data, file_path)
 
-  # Emailing user the results
-  mailR::send.mail(
+
+  email <- emayili::envelope(
     from = "pyhousehunter@gmail.com",
     to = email_recipient,
     subject = email_subject,
-    body = "Results meeting your specifications are attached.",
-    smtp = list(
-      host.name = "smtp.gmail.com", port = 587,
-      user.name = "pyhousehunter@gmail.com",
-      passwd = "dsci524group6", tls = TRUE
-    ),
-    authenticate = TRUE,
-    attach.files = file_path,
-    file.names = "Results.csv",
-    send = TRUE
+    text = "Results meeting your specifications are attached."
   )
+  email <- emayili::attachment(email, file_path, "results.csv")
+
+  smtp <- emayili::server(
+    host = "smtp.gmail.com",
+    port = 465,
+    username = "pyhousehunter@gmail.com",
+    password = "dsci524group6"
+  )
+
+  smtp(email, verbose = TRUE)
 }

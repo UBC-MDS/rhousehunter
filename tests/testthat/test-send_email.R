@@ -36,7 +36,7 @@ testthat::test_that("Error in send_email(): the input tibble is empty", {
 })
 
 # Tests on output
-# Test that output is an 'S4' object fo class 'jobjRef'
+# Test that email is sent (i.e. status = 250)
 testthat::test_that("Error in send_email(): Email not Sent", {
-  testthat::expect_s4_class(send_email("hello@new.com", toy_tibble), "jobjRef")
+  testthat::expect_true(send_email("hi@new.com", toy_tibble)$status_code == 250)
 })
