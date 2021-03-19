@@ -1,4 +1,4 @@
 library(testthat)
-library(Rhousehunter)
+library(rhousehunter)
 
-test_check("Rhousehunter")
+test_check("rhousehunter")

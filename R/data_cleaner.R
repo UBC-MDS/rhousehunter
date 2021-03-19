@@ -3,14 +3,21 @@
 #' A function to clean web-scraped data given the tibble containing raw data .
 #'
 #'
-#' @param scraped_df A tibble containing web-scraped data like listing url, price and house type.
+#' @param scraped_df A tibble containing web-scraped data like listing url,
+#'   price and house type.
 #'
-#' @return tibble A cleaned tibble containing information like listing url, price, number of bedrooms, area in sqft, and city.
+#' @return tibble A cleaned tibble containing information like listing url,
+#'   price, number of bedrooms, area in sqft, and city.
 #' @export
 #' @examples
-#' data_cleaner(tibble::tibble("price"= c("$1,300", "$1,200"), "house_type"= c("1br-600ft2-", "2br-"),
-#' "listing_url" = c(“https://vancouver.craigslist.org/bnc/apa/d/burnaby-must-see-1br-suite/7282955370.html",
-#' "https://vancouver.craigslist.org/rds/apa/d/surrey-bedroom-basement-for-rent/7273877138.html")))
+#' data_cleaner(tibble::tibble(
+#'   "price" = c("$1,300", "$1,200"),
+#'   "house_type" = c("1br-600ft2-", "2br-"),
+#'   "listing_url" = c(
+#'     "https://vancouver.craigslist.org/bnc/apa/d/burnaby-must-see-1br-suite/7282955370.html",
+#'     "https://vancouver.craigslist.org/rds/apa/d/surrey-bedroom-basement-for-rent/7273877138.html"
+#'   )
+#' ))
 data_cleaner <- function(scraped_df) {
   if (!tibble::is_tibble(scraped_df)) {
     stop("Cannot do the data cleaning for a non-tibble input")
@@ -22,14 +29,15 @@ data_cleaner <- function(scraped_df) {
     stop("The house_type column is missing")
   } else if (!"listing_url" %in% colnames(scraped_df)) {
     stop("The listing_url column is missing")
-  } else{
-
+  } else {
     cleaned_df <- scraped_df
 
     # Create the list of cities in metro vancouver
-    city_list <- c("Bowen Island", "Burnaby", "Coquitlam", "Delta", "Langley", "Maple Ridge",
-                   "New Westminster", "North Vancouver", "Pitt Meadows", "Port Coquitlam", "Port Moody",
-                   "Richmond", "Surrey", "Vancouver","West Vancouver", "White Rock")
+    city_list <- c(
+      "Bowen Island", "Burnaby", "Coquitlam", "Delta", "Langley", "Maple Ridge",
+      "New Westminster", "North Vancouver", "Pitt Meadows", "Port Coquitlam", "Port Moody",
+      "Richmond", "Surrey", "Vancouver", "West Vancouver", "White Rock"
+    )
 
     # convert the price column into numeric data types
     cleaned_df$price <- as.character(cleaned_df$price)
@@ -53,10 +61,10 @@ data_cleaner <- function(scraped_df) {
 
     # extract the information about which city are the housing located in
     cleaned_df$city <- stringr::str_extract_all(cleaned_df$listing_url, "[d]{1}[/]{1}[a-z]+[-]{1}")
-    cleaned_df$city <- stringr::str_remove_all(cleaned_df$city, 'd/')
-    cleaned_df$city <- stringr::str_remove_all(cleaned_df$city, '-')
+    cleaned_df$city <- stringr::str_remove_all(cleaned_df$city, "d/")
+    cleaned_df$city <- stringr::str_remove_all(cleaned_df$city, "-")
     cleaned_df$city <- stringr::str_to_title(cleaned_df$city)
-    cleaned_df$city <- lapply(cleaned_df$city, function(x)x[which(x %in% city_list)])
+    cleaned_df$city <- lapply(cleaned_df$city, function(x) x[which(x %in% city_list)])
     cleaned_df$city <- tolower(cleaned_df$city)
     cleaned_df$city[cleaned_df$city == "character(0)"] <- NA
 
