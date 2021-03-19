@@ -42,7 +42,7 @@ polite_download_file <- memoise::memoise(
 #' @export
 #'
 #' @examples
-#' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = TRUE)
+#' scraper(url = "https://vancouver.craigslist.org/d/apartments-housing-for-rent/search/apa", online = FALSE)
 scraper <- function(url, online = FALSE) {
   # PART 0: Exception handling/ Input validation
 
@@ -72,7 +72,7 @@ scraper <- function(url, online = FALSE) {
     polite_download_file(url, destfile = "apa", overwrite = TRUE)
     page <- xml2::read_html("./downloads/apa")
   } else {
-    page <- xml2::read_html("./downloads/van_housing_listings.html")
+    page <- xml2::read_html(system.file("extdata", "van_housing_listings.html", package = "rhousehunter"))
   }
 
 

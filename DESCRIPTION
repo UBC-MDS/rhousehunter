@@ -1,4 +1,4 @@
-Package: Rhousehunter
+Package: rhousehunter
 Title: Simplify House-Hunting
 Version: 0.0.0.9000
 Authors@R: c(person(given = "Ela", 

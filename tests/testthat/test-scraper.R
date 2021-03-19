@@ -32,22 +32,26 @@ test_that("Error in scraper(): `online` need to be a Boolean", {
 })
 
 
-# Tests on output
-data <- scraper(url = url, online = TRUE)
 
 # Test to confirm the output tibble is not empty
 test_that("Output tibble is not empty", {
+  skip_on_ci()
+  data <- scraper(url = url, online = TRUE)
   expect_true(dim(data)[1] != 0)
 })
 
 # Test to confirm the dimension of the output tibble is correct
 test_that("Output tibble has the correct shape", {
+  skip_on_ci()
+  data <- scraper(url = url, online = TRUE)
   expect_true(dim(data)[1] == 120)
   expect_true(dim(data)[2] == 3)
 })
 
 # Test to confirm the data type of each column of the output tibble is character type and with correct list name
 test_that("Data type of each column of the output tibble is character type and with correct list name", {
+  skip_on_ci()
+  data <- scraper(url = url, online = TRUE)
   data_type <- lapply(data, class)
   expected_data_type <- list("character", "character", "character")
   names(expected_data_type) <- c("listing_url", "price", "house_type")
