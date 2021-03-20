@@ -14,7 +14,7 @@ Authors@R: c(person(given = "Ela",
               person(given = "Alex", 
                      family = "Truong",
                      role = "aut"))
-Description: What the package does (one paragraph).
+Description: This R package includes four functions that simplify rental searching on Craigslist: scrape rental websites on Craiglist, clean the data, filter the data by user inputs, and email users with the organized information.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
