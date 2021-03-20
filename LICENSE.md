@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2021 Elina Lin
+Copyright (c) 2021 Ela Bandari, Junting He, Ling (Elina) Lin, Alex Truong
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
