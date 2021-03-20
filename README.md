@@ -1,6 +1,7 @@
 # R House Hunter 
   <!-- badges: start -->
   [![R-CMD-check](https://github.com/UBC-MDS/rhousehunter/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/rhousehunter/actions)
+  [![test-coverage](https://github.com/UBC-MDS/rhousehunter/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/rhousehunter/actions/workflows/test-coverage.yaml)
   [![codecov](https://codecov.io/gh/UBC-MDS/rhousehunter/branch/main/graph/badge.svg?token=B94PUKUTQP)](https://codecov.io/gh/UBC-MDS/rhousehunter)
   <!-- badges: end -->
  
@@ -66,16 +67,30 @@ The send_email function sends end-users housing listing records meeting their sp
 - readr
 - rlang
 - emayili
+- qpdf
 
 ## Usage
 
-Please refer to [the package vignette](https://github.com/UBC-MDS/Rhousehunter) for more details
+Please refer to [the package vignette](https://ubc-mds.github.io/rhousehunter/articles/rhousehunter-vignette.html) for more details
 
 ## Documentation
 
-The official documentation is hosted [here](https://github.com/UBC-MDS/Rhousehunter)
+The official documentation is hosted [here](https://ubc-mds.github.io/rhousehunter/)
 
 ## Contributors
+
+The names and GitHub handles of core development team is listed below.
+
+Name|Github Handle
+------|----------
+Alex Truong Hai Yen|athy9193
+Ela Bandari|elabandari
+Elina Lin|elina-linglin
+Junting He|juntinghe
+
+You can see a list of current contributors in the [contributors tab](https://github.com/UBC-MDS/rhousehunter/graphs/contributors).
+
+
 
 We welcome and recognize all contributions. You can see how to contribute [here](https://github.com/UBC-MDS/rhousehunter/blob/main/.github/CONTRIBUTING.md)
 
