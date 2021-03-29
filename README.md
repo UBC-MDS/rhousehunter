@@ -96,7 +96,7 @@ We welcome and recognize all contributions. You can see how to contribute [here]
 
 ### Credits
 
-This package was created with reference from `devtools` package, [R package guide](https://r-pkgs.org/index.html) by [Hadley Wickham](http://hadley.nz/) and [Jenny Bryan](https://jennybryan.org/) and [`polite` package](https://github.com/dmi3kno/polite) by [
+This package was created with reference from `devtools` package, [R package guide](https://r-pkgs.org/index.html) by [Hadley Wickham](http://hadley.nz/) and [Jenny Bryan](https://jennybryan.org/) and [`polite` package for package developers](https://github.com/dmi3kno/polite) by [
 Dmytro Perepolkin](https://github.com/dmi3kno)
 
 
