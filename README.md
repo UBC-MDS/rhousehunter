@@ -68,7 +68,6 @@ The send_email function sends end-users housing listing records meeting their sp
 - rlang
 - emayili
 - qpdf
-- polite
 
 ## Usage
 
